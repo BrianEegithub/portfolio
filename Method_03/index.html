@@ -188,5 +188,30 @@
         <a href="mailto:brianee878@gmail.com">brianee878@gmail.com</a>
       </p>
     </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+        const options = {
+          root: null, // Use the viewport as the root
+          rootMargin: "0px",
+          threshold: 0.1, // Trigger when 10% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible"); // Add visible class when in view
+            } else {
+              entry.target.classList.remove("visible"); // Remove class when out of view
+            }
+          });
+        }, options);
+
+        sections.forEach((section) => {
+          observer.observe(section); // Observe each section
+        });
+      });
+    </script>
   </body>
 </html>
